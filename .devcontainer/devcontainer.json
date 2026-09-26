@@ -1,0 +1,31 @@
+{
+  "name": "Rulehaven",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "forwardPorts": [3000, 5432, 9000, 9001],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rulehaven web",
+      "onAutoForward": "openBrowser"
+    },
+    "9001": {
+      "label": "MinIO console",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "npm ci",
+  "remoteUser": "node"
+}
